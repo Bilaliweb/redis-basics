@@ -1,2 +1,13 @@
-/redis-practice/setup/node_modules
-/redis-practice/site-banner/node_modules
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# OS files
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
