@@ -1,0 +1,17 @@
+{
+  "name": "jobs-with-bullmq",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node api.js"
+  },
+  "dependencies": {
+    "bullmq": "^5.80.3",
+    "express": "^5.2.1",
+    "ioredis": "^5.11.1"
+  }
+}
