@@ -1,0 +1,16 @@
+{
+  "name": "notification-pub-sub",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "scripts": {
+    "api": "node api.js",
+    "subscriber": "node subscriber.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "ioredis": "^5.11.1"
+  }
+}

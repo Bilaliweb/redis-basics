@@ -14,6 +14,8 @@ redis.on('error', (err) => {
 // Queue
 const QUEUE_KEY = 'queue:emails' // Standard practice of writing keys for queues
 
+// Doing it manually for understanding purpose
+
 // Sending job in specific queue i.e; queue:emails
 app.post('/queue/emails', async (req, res) => {
     const job = {
