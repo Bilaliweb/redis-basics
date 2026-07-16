@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeonStrike - Live Leaderboard</title>
+    <!-- Tailwind CSS for rapid, attractive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: { bg: '#0f172a', card: '#1e293b', accent: '#38bdf8', pink: '#f472b6' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .neon-glow { box-shadow: 0 0 15px rgba(56, 189, 248, 0.5); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <nav class="bg-neon-card border-b border-gray-700 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-neon-accent tracking-wider">⚡ NeonStrike</a>
+            <div class="space-x-4">
+                <% if (locals.currentUser) { %>
+                    <span class="text-gray-300">Welcome, <span class="text-neon-pink font-semibold"><%= currentUser.username %></span></span>
+                    <a href="/logout" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-white text-sm transition">Logout</a>
+                <% } else { %>
+                    <a href="/login" class="px-4 py-2 bg-neon-accent hover:bg-blue-400 rounded-lg text-neon-bg font-semibold text-sm transition">Login</a>
+                    <a href="/register" class="px-4 py-2 border border-neon-accent text-neon-accent hover:bg-neon-accent hover:text-neon-bg rounded-lg text-sm transition">Register</a>
+                <% } %>
+            </div>
+        </div>
+    </nav>
+    <main class="flex-grow container mx-auto p-6">
+        <!-- Flash Messages -->
+        <% if (locals.error) { %>
+            <div class="bg-red-900/50 border border-red-500 text-red-200 px-4 py-3 rounded-lg mb-6"><%= error %></div>
+        <% } %>
+        <% if (locals.success) { %>
+            <div class="bg-green-900/50 border border-green-500 text-green-200 px-4 py-3 rounded-lg mb-6"><%= success %></div>
+        <% } %>

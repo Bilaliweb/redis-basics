@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+<div class="max-w-md mx-auto mt-10 bg-neon-card p-8 rounded-xl neon-glow">
+    <h2 class="text-3xl font-bold text-center text-neon-accent mb-6">Player Login</h2>
+    <form action="/login" method="POST" class="space-y-5">
+        <div>
+            <label class="block text-gray-400 text-sm mb-1">Email Address</label>
+            <input type="email" name="email" required 
+                   class="w-full px-4 py-2 bg-neon-bg border border-gray-600 rounded-lg focus:outline-none focus:border-neon-accent text-white" 
+                   placeholder="player@neonstrike.com">
+        </div>
+        <div>
+            <label class="block text-gray-400 text-sm mb-1">Password</label>
+            <input type="password" name="password" required 
+                   class="w-full px-4 py-2 bg-neon-bg border border-gray-600 rounded-lg focus:outline-none focus:border-neon-accent text-white" 
+                   placeholder="••••••••">
+        </div>
+        <button type="submit" class="w-full py-3 bg-neon-accent hover:bg-blue-400 text-neon-bg font-bold rounded-lg transition transform hover:scale-105">
+            Enter the Arena
+        </button>
+    </form>
+    <p class="text-center text-gray-400 mt-6 text-sm">
+        New player? <a href="/register" class="text-neon-pink hover:underline">Create an account</a>
+    </p>
+</div>
+
+<%- include('../partials/footer') %>
