@@ -1,9 +1,5 @@
 import Redis from "ioredis";
 
-// Redis Instance
-// Main instance
-// export const redis = new Redis(process.env.REDIS_PORT || 'redis://localhost:6379')
-
 let mainClientInstance = null;
 
 // Shares 1 standard connection for commands and publishing

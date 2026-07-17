@@ -9,14 +9,8 @@ const app = express()
 const port = 8000
 app.use(express.json())
 
-// Redis Instance
+// Redis Instance and can be used in multiple files as per need
 export const redis = getMainClient()
-// export const publisher = new Redis(process.env.REDIS_PORT || 'redis://localhost:6379')
-
-// // Redis connection error handling
-// publisher.on('error', (err) => {
-//     console.error('Redis connection error here: ', err);
-// })
 
 // Templating Engine
 app.set('view engine', 'ejs')

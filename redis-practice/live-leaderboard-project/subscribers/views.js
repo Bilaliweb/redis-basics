@@ -13,12 +13,8 @@ viewSub.subscribe("views", (err) => {
 
 // Will listen to this event only if message is recevied and logic will execute
 viewSub.on('message', async (channel, message) => {
-    console.log(`Message received on ${channel}: ${message}`);
-    const parsedMessage = JSON.parse(message)
-    console.log('Parsed message: ', parsedMessage);
-    
 
+    const parsedMessage = JSON.parse(message)    
     // Logic for increase
-    const increasedCount = await redis.hincrby(parsedMessage.key, parsedMessage.toIncrease, parsedMessage.increaseCountBy)
-    console.log('Increased count: ', increasedCount);
+    await redis.hincrby(parsedMessage.key, parsedMessage.toIncrease, parsedMessage.increaseCountBy)
 })

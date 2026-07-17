@@ -1,4 +1,5 @@
 import { createSubscriberClient } from "../config/redis.js";
+import { redis } from "../index.js";
 
 export const scoreSub = createSubscriberClient();
 
@@ -11,6 +12,9 @@ scoreSub.subscribe("scores", (err) => {
 })
 
 // Will listen to this event only if message is recevied and logic will execute
-scoreSub.on('message', (channel, message) => {
-    console.log(`Message received on ${channel}: ${message}`);
+scoreSub.on('message', async (channel, message) => {
+
+    const parsedMessage = JSON.parse(message)
+    // Logic for increase
+    await redis.zincrby(parsedMessage.scoreKey, parsedMessage.increaseCountBy, parsedMessage.userId)
 })
