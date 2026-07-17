@@ -1,7 +1,7 @@
-import { createSubscriberClient } from "../config/redis.js";
-import { redis } from "../index.js";
+import { createSubscriberClient, getMainClient } from "../config/redis.js";
 
 export const viewSub = createSubscriberClient();
+const redis = getMainClient();
 
 viewSub.subscribe("views", (err) => {
     if(err) {
