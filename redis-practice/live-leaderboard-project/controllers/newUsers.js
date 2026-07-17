@@ -35,7 +35,7 @@ export async function getNewSeededUserData(req, res) {
 }
 
 export async function fetchLeaderboardUsers() {
-    // Fetching users by providing start and last index from a sorted set
+    // Fetching User IDs by providing start and last index from a sorted set
     const userIds = await redis.zrevrange('leaderboard:scores', 0, -1);
 
     // Build full user objects for the template
@@ -59,4 +59,37 @@ export async function getAllUsersFromRedis(req, res) {
     const allUsers = await fetchLeaderboardUsers()
     console.log('All users: ', allUsers);
     res.json({ success: true, data: allUsers })
+}
+
+export async function increaseUserViewCount(req, res) {
+    // TODO: Add Pub-Sub logic to update UI without refresh. Below logic will be shifted to subscriber and this will be updated as publisher
+    const userId = req.params.id
+    const key = `leaderboardUser:user${userId}`
+    const userResultById = await redis.exists(key)
+    console.log('Check fetched user for view: ', userResultById);
+    
+    if(!userResultById) return res.json({ err: 'User not found.' })
+
+    const increasedCount = await redis.hincrby(key, 'views', 1)
+    console.log('Increased count: ', increasedCount);
+    
+    res.redirect('/leaderboard')
+}
+
+export async function increaseUserScoreCount(req, res) {
+    // TODO: Add Pub-Sub logic to update UI without refresh. Below logic will be shifted to subscriber and this will be updated as publisher
+    const userId = req.params.id
+    const key = `leaderboardUser:user${userId}`
+    const userResultById = await redis.exists(key)
+    console.log('Check fetched user for score: ', userResultById);
+    
+    if(!userResultById) return res.json({ err: 'User not found.' })
+
+    // const getScore = await redis.zscore('leaderboard:scores', userId)
+    // console.log("Check current user score: ", getScore);
+    
+    const increasedScore = await redis.zincrby('leaderboard:scores', 5, userId)
+    console.log('Increased count: ', increasedScore);
+    
+    res.redirect('/leaderboard')
 }
