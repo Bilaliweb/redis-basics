@@ -1,4 +1,6 @@
-import { redis } from "../index.js";
+import { getMainClient } from "../config/redis.js";
+
+const redis = getMainClient();
 
 export async function newUsersForRedis(req, res) {
 
