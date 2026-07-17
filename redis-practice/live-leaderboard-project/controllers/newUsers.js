@@ -75,3 +75,21 @@ export async function increaseUserViewCount(req, res) {
     
     res.redirect('/leaderboard')
 }
+
+export async function increaseUserScoreCount(req, res) {
+    // TODO: Add Pub-Sub logic to update UI without refresh. Below logic will be shifted to subscriber and this will be updated as publisher
+    const userId = req.params.id
+    const key = `leaderboardUser:user${userId}`
+    const userResultById = await redis.exists(key)
+    console.log('Check fetched user for score: ', userResultById);
+    
+    if(!userResultById) return res.json({ err: 'User not found.' })
+
+    // const getScore = await redis.zscore('leaderboard:scores', userId)
+    // console.log("Check current user score: ", getScore);
+    
+    const increasedScore = await redis.zincrby('leaderboard:scores', 5, userId)
+    console.log('Increased count: ', increasedScore);
+    
+    res.redirect('/leaderboard')
+}

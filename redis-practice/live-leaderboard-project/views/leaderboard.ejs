@@ -52,7 +52,7 @@
                     </form>
 
                     <!-- Add Score Form (POST to increment score) -->
-                    <form action="/user/<%= user.id %>/score" method="POST" class="flex-1">
+                    <form action="/newUsers/user/<%= user.id %>/score" method="POST" class="flex-1">
                         <button type="submit" class="w-full py-2 bg-neon-accent hover:bg-blue-400 text-neon-bg rounded-lg text-sm font-bold transition flex items-center justify-center space-x-1">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                             <span>Add Score</span>
